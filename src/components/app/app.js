@@ -16,6 +16,7 @@ export default class App extends Component {
     return { label,
              important: false,
              done: false,
+             visible: true,
              id: this.nextId++ }
   };
 
@@ -88,6 +89,28 @@ export default class App extends Component {
     console.log(`onToggleDone (id): ${id}`);
   };
 
+  onSearch = (e) => {
+    const search = e.target.value.toLowerCase();
+    const reset = !search.length;
+
+    this.setState(({ todoData }) => {
+      const newArray = todoData.map((item) => {
+        const current = item.label.toLowerCase();
+
+        if (reset || ~current.indexOf(search)) item.visible = true;
+        else item.visible = false;
+
+        return item
+      });
+
+      return {
+        todoData: newArray
+      }
+    });
+
+    console.log(`onSearch: ${search}`);
+  }
+
   render() {
     const { todoData } = this.state;
 
@@ -99,7 +122,7 @@ export default class App extends Component {
         <AppHeader toDo={todoCount}
                    done={doneCount} />
         <div className="top-panel d-flex">
-          <SearchPanel />
+          <SearchPanel onSearch={ this.onSearch }/>
           <ItemStatusFilter />
         </div>
         <TodoList todos={ todoData }

@@ -6,7 +6,9 @@ import './todo-list.css';
 const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
 
   const elements = todos.map((item) => {
-    const { id, ...itemProps } = item;
+    const { id, visible, ...itemProps } = item;
+
+    if (!visible) return;
 
     return (
       <li key={id} className="list-group-item">
