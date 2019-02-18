@@ -9,29 +9,6 @@ const TodoListItem = ({ label,
                         important,
                         done }) => {
 
-  // state = {
-  //   done: false,
-  //   important: this.props.important
-  // };
-
-  // onLabelClick = () => {
-  //   this.setState(({done}) => {
-  //     return {
-  //       done: !done
-  //     };
-  //   });
-  //   console.log(`onLabelClick: ${this.props.label}`);
-  // };
-
-  // onMarkImportant = () => {
-  //   this.setState(({ important }) => {
-  //     return {
-  //       important: !important
-  //     };
-  //   });
-  //   console.log(`onMarkImportant: ${this.props.label}`);
-  // }
-
   let classNames = 'todo-list-item';
   if (done) {
     classNames += ' done';
