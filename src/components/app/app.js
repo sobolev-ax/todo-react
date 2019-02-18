@@ -107,8 +107,8 @@ export default class App extends Component {
     console.log(`search: ${term}`);
 
     return data.filter((item) => {
-      if (this.isFiltered(item, currentFilter) &&
-         (!term.length || ~item.label.toLowerCase().indexOf(term.toLowerCase()))) return true
+      if ((!term.length || ~item.label.toLowerCase().indexOf(term.toLowerCase())) &&
+         this.isFiltered(item, currentFilter)) return true
       return false;
     });
   } 
